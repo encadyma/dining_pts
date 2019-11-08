@@ -3,6 +3,9 @@
 
 import os
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ExpCond
+from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 
 from constants import *
@@ -22,13 +25,13 @@ print("""
    Unintended behavior may result from the use of this program.
    Further usage of this program means that you run this program at your own risk.
 
-   IMPORTANT: DO NOT TRUST YOUR PASSWORDS IN THE WRONG HANDS!
+   IMPORTANT: DO NOT TRUST YOUR PERSONAL DATA IN THE WRONG HANDS!
    Always double check the source code of what you are running.
    You may safely quit this application through CTRL+C.
 """)
 
 driver_options = Options()
-driver_options.headless = True
+# driver_options.headless = True
 
 driver = webdriver.Firefox(
     executable_path=os.path.abspath("geckodriver"),
@@ -50,13 +53,19 @@ if auth_calnet(driver):
     txt_sid = "/html/body/div/div[3]/div/div/div/div[2]/div/table/tbody/tr[3]/td/b"
     txt_flex = "/html/body/div/div[3]/div/div/div/div[2]/div/table/tbody/tr[7]/td[1]/b"
 
+    
     def get_txt(xpath):
         elem = driver.find_element(By.XPATH, xpath)
         return elem.text
 
     print("============ STUDENT INFO ============")
     print("Your student ID is " + get_txt(txt_sid))
-    print("Your remaining flex dollars: " + get_txt(txt_flex))
+
+    if len(driver.find_elements(By.XPATH, txt_flex)) > 0:
+        print("Your remaining flex dollars: " + get_txt(txt_flex))
+    else:
+        print("Unfortunately, you are not on a meal plan.")
+    
     driver.quit()
 
 else:

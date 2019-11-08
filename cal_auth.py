@@ -77,6 +77,10 @@ def auth_calnet(driver, username=None, password=None):
         WebDriverWait(driver, 5).until(
             ExpCond.element_to_be_clickable((By.XPATH, btn_2fa_xpath)))
 
+        # TODO: Double check that the text is about pushing.
+        # If said button exists, push!
+        # Otherwise, consider other options.
+
         driver.find_element(By.XPATH, btn_2fa_xpath).click()
 
         print("Please check your push notifications and accept it within 25 seconds.")

@@ -1,5 +1,6 @@
 # Direct URLS
-URL_AUTH_PORTAL = "https://cal.berkeley.edu/login/"
+URL_AUTH_PORTAL = "https://auth.berkeley.edu/cas/login?service=https://services.housing.berkeley.edu/c1c/dyn/CasLogin.asp"
+URL_BALANCES_PORTAL = "https://services.housing.berkeley.edu/c1c/dyn/balance.asp"
 
 # Current data on Cal Dining
 META_SCHOOL_YR = "2019-20"

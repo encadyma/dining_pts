@@ -2,6 +2,9 @@
 URL_AUTH_PORTAL = "https://auth.berkeley.edu/cas/login?service=https://services.housing.berkeley.edu/c1c/dyn/CasLogin.asp"
 URL_BALANCES_PORTAL = "https://services.housing.berkeley.edu/c1c/dyn/balance.asp"
 
+URL_BALANCES_FLEX = "https://services.housing.berkeley.edu/c1c/dyn/bals.asp?pln=onfd1"
+URL_BALANCES_MP = "https://services.housing.berkeley.edu/c1c/dyn/bals.asp?pln=rb"
+
 # Current data on Cal Dining
 META_SCHOOL_YR = "2019-20"
 

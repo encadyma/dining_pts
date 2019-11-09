@@ -8,8 +8,11 @@ from selenium.webdriver.support import expected_conditions as ExpCond
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 
+from six.moves import input as raw_input
+
 from constants import *
 from cal_auth import auth_calnet
+from menu import menu_loop
 
 print("""
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -31,7 +34,7 @@ print("""
 """)
 
 driver_options = Options()
-# driver_options.headless = True
+driver_options.headless = True
 
 driver = webdriver.Firefox(
     executable_path=os.path.abspath("geckodriver"),
@@ -63,11 +66,14 @@ if auth_calnet(driver):
 
     if len(driver.find_elements(By.XPATH, txt_flex)) > 0:
         print("Your remaining flex dollars: " + get_txt(txt_flex))
+        menu_loop(driver)
     else:
         print("Unfortunately, you are not on a meal plan.")
+        print("This application cannot provide much information...")
     
     driver.quit()
 
 else:
     print("Authentication failed. Quitting this application...")
     driver.quit()
+
